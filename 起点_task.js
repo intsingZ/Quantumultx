@@ -4,59 +4,131 @@
 
 
 
-//惠头条邀请码 51830362 
+
+//惠头条邀请码 51830362 
+
 
 var $iosrule = iosrule();//声明必须
 var app = "惠头条";
 
-var urlVal = $request.url;//获取到捕获的链接
-var bdVal = $request.body;//获取到捕获的请求体
+
+var rdurl = $iosrule.read("rdurl");
+var wzbd = $iosrule.read("wzbd");
+var spbd = $iosrule.read("spbd");
+var xspbd = $iosrule.read("xspbd");
+
+
+task();
+
+
+function task() {
+
+
+    setTimeout(function () {
+        wz();
+    }, 1 * 100);
+
+    setTimeout(function () {
+        sp();
+    }, 33 * 1000);
+
+
+    setTimeout(function () {
+        xsp();
+    }, 66 * 1000);
 
 
 
-writeCk();
-$iosrule.end();
+}
 
 
+//文章阅读
+function wz() {
 
 
-function writeCk() {
+    const llUrl1 = { url: rdurl,headers: { "Content-Type": "application/json"}, body: xgbd(wzbd) };
 
-    console.log(`[当前捕获到url链接]:${urlVal}`);
+    $iosrule.post(llUrl1, function (error, response, data) {
 
-    if (urlVal.indexOf("frontend/read/sych/duration") != -1) {
+        console.log("[文章阅读返回数据]:" + data);
 
-        var ok = $iosrule.write(urlVal, "rdurl");
+        var obj = JSON.parse(data);
 
-        if (bdVal.indexOf("dongfang") != -1) {
+        if (obj.statusCode == 200) {
+            
+            console.log("[文章阅读金币奖励]:" + obj.incCredit );
+            $iosrule.notify(app,"[文章阅读金币奖励]:" + obj.incCredit,"");
+            
+           
+        }else{
+            console.log("[文章阅读失败]:" + obj.statusCode );
+            $iosrule.notify(app,"[文章阅读失败]:" + obj.statusCode,"");
 
-            var okwz = $iosrule.write(bdVal, "wzbd");
-
-            if (ok == true && okwz == true)
-                $iosrule.notify(app, "[文章阅读]数据写入成功", "");
         }
+            
+    })
 
-        else if (bdVal.indexOf("video") != -1 && bdVal.indexOf("self_smallvideo") < 0) {
 
-            var oksp = $iosrule.write(bdVal, "spbd");
+}
 
-            if (ok == true && oksp == true)
-                $iosrule.notify(app, "[视频阅读]数据写入成功", "");
+
+
+function sp() {
+
+    var nbd = xgbd(spbd);
+
+
+    const llUrl1 = { url: rdurl,headers: { "Content-Type": "application/json"}, body: nbd };
+
+    $iosrule.post(llUrl1, function (error, response, data) {
+
+        console.log("[视频阅读返回数据]:" + data);
+
+        var obj = JSON.parse(data);
+
+        if (obj.statusCode == 200) {
+            
+            console.log("[视频阅读金币奖励]:" + obj.incCredit );
+            $iosrule.notify(app,"[视频阅读金币奖励]:" + obj.incCredit,"");
+            
+           
+        }else{
+            console.log("[视频阅读失败]:" + obj.statusCode );
+            $iosrule.notify(app,"[视频阅读失败]:" + obj.statusCode,"");
         }
+            
+    })
 
-        else if (bdVal.indexOf("self_smallvideo") != -1) {
 
-            var okxsp = $iosrule.write(bdVal, "xspbd");
+}
 
-            if (ok == true && okxsp == true)
-                $iosrule.notify(app, "[小视频阅读]数据写入成功", "");
+
+
+function xsp() {
+
+    var nbd = xgbd(spbd);
+
+    const llUrl1 = { url: rdurl,headers: { "Content-Type": "application/json"}, body: nbd };
+
+    $iosrule.post(llUrl1, function (error, response, data) {
+
+        console.log("[小视频阅读返回数据]:" + data);
+
+        var obj = JSON.parse(data);
+
+        if (obj.statusCode == 200) {
+            
+            console.log("[小视频阅读金币奖励]:" + obj.incCredit );
+            $iosrule.notify(app,"[小视频阅读金币奖励]:" + obj.incCredit,"");
+            
+           
+        }else{
+            console.log("[小视频阅读失败]:" + obj.statusCode );
+            $iosrule.notify(app,"[小视频阅读失败]:" + obj.statusCode,"");
+
         }
-
-
-
-    }
-
-
+            
+    })
 
 
 }
@@ -64,7 +136,21 @@ function writeCk() {
 
 
 
-//这个通用的写法,用于圈x,loon,surge这三者的通用写法
+function xgbd(bd) {
+
+    if (JSON.parse(bd).hasOwnProperty("token")) {
+        bd = JSON.parse(bd); delete bd["token"]; bd = JSON.stringify(bd);
+        return bd;
+      }
+      else
+        return bd;
+
+
+}
+
+
+
+
 function iosrule() {
     const isRequest = typeof $request != "undefined"
     const isSurge = typeof $httpClient != "undefined"
@@ -109,16 +195,3 @@ function iosrule() {
     }
     return { isRequest, isQuanX, isSurge, notify, write, read, get, post, end }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
