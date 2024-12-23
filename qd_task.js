@@ -3,7 +3,7 @@
 操作步骤: 我 --> 福利中心 
 
 [rewrite local]
-https\:\/\/h5\.if\.qidian\.com\/argus\/api\/v2\/video\/adv\/mainPage url script-response-body https://raw.githubusercontent.com/MCdasheng/QuantumultX/main/Scripts/myScripts/qidian/qidian.taskId.js
+https\:\/\/h5\.if\.qidian\.com\/argus\/api\/v2\/video\/adv\/mainPage url script-response-body https://raw.githubusercontent.com/intsingZ/Quantumultx/refs/heads/main/qd_task.js
 
 [MITM]
 hostname = h5.if.qidian.com
