@@ -7,7 +7,7 @@
 //惠头条邀请码 51830362 
 
 var $iosrule = iosrule();//声明必须
-var app = "惠头条";
+var app = 起点读书";
 
 var urlVal = $request.url;//获取到捕获的链接
 var bdVal = $request.body;//获取到捕获的请求体
