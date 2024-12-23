@@ -9,7 +9,7 @@
 
 
 var $iosrule = iosrule();//声明必须
-var app = "惠头条";
+var app = "起点读书";
 
 
 var rdurl = $iosrule.read("rdurl");
