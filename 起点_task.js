@@ -13,9 +13,9 @@ var app = "惠头条";
 
 
 var rdurl = $iosrule.read("rdurl");
-var wzbd = $iosrule.read("wzbd");
-var spbd = $iosrule.read("spbd");
-var xspbd = $iosrule.read("xspbd");
+var wzbd = $iosrule.read("jlsp");
+var spbd = $iosrule.read("ewsp");
+var xspbd = $iosrule.read("bxysp");
 
 
 task();
@@ -25,16 +25,16 @@ function task() {
 
 
     setTimeout(function () {
-        wz();
+        asp();
     }, 1 * 100);
 
     setTimeout(function () {
-        sp();
+        bsp();
     }, 33 * 1000);
 
 
     setTimeout(function () {
-        xsp();
+        csp();
     }, 66 * 1000);
 
 
@@ -43,26 +43,26 @@ function task() {
 
 
 //文章阅读
-function wz() {
+function asp() {
 
 
-    const llUrl1 = { url: rdurl,headers: { "Content-Type": "application/json"}, body: xgbd(wzbd) };
+    const llUrl1 = { url: rdurl,headers: { "Content-Type": "application/json"}, body: xgbd(aspbd) };
 
     $iosrule.post(llUrl1, function (error, response, data) {
 
-        console.log("[文章阅读返回数据]:" + data);
+        console.log("[每日福利]:" + data);
 
         var obj = JSON.parse(data);
 
         if (obj.statusCode == 200) {
             
-            console.log("[文章阅读金币奖励]:" + obj.incCredit );
-            $iosrule.notify(app,"[文章阅读金币奖励]:" + obj.incCredit,"");
+            console.log("[每日福利视频]:" + obj.incCredit );
+            $iosrule.notify(app,"[每日视频福利]:" + obj.incCredit,"");
             
            
         }else{
-            console.log("[文章阅读失败]:" + obj.statusCode );
-            $iosrule.notify(app,"[文章阅读失败]:" + obj.statusCode,"");
+            console.log("[每日视频失败]:" + obj.statusCode );
+            $iosrule.notify(app,"[每日视频失败]:" + obj.statusCode,"");
 
         }
             
@@ -73,28 +73,27 @@ function wz() {
 
 
 
-function sp() {
+function bsp() {
 
-    var nbd = xgbd(spbd);
 
 
     const llUrl1 = { url: rdurl,headers: { "Content-Type": "application/json"}, body: nbd };
 
     $iosrule.post(llUrl1, function (error, response, data) {
 
-        console.log("[视频阅读返回数据]:" + data);
+        console.log("[额外视频返回数据]:" + data);
 
         var obj = JSON.parse(data);
 
         if (obj.statusCode == 200) {
             
-            console.log("[视频阅读金币奖励]:" + obj.incCredit );
-            $iosrule.notify(app,"[视频阅读金币奖励]:" + obj.incCredit,"");
+            console.log("[额外视频奖励]:" + obj.incCredit );
+            $iosrule.notify(app,"[额外视频奖励]:" + obj.incCredit,"");
             
            
         }else{
-            console.log("[视频阅读失败]:" + obj.statusCode );
-            $iosrule.notify(app,"[视频阅读失败]:" + obj.statusCode,"");
+            console.log("[额外视频失败]:" + obj.statusCode );
+            $iosrule.notify(app,"[额外视频失败]:" + obj.statusCode,"");
         }
             
     })
@@ -104,27 +103,27 @@ function sp() {
 
 
 
-function xsp() {
+function csp() {
 
-    var nbd = xgbd(spbd);
+    
 
     const llUrl1 = { url: rdurl,headers: { "Content-Type": "application/json"}, body: nbd };
 
     $iosrule.post(llUrl1, function (error, response, data) {
 
-        console.log("[小视频阅读返回数据]:" + data);
+        console.log("[额外不视频数据]:" + data);
 
         var obj = JSON.parse(data);
 
         if (obj.statusCode == 200) {
             
-            console.log("[小视频阅读金币奖励]:" + obj.incCredit );
-            $iosrule.notify(app,"[小视频阅读金币奖励]:" + obj.incCredit,"");
+            console.log("[额外不视频奖励]:" + obj.incCredit );
+            $iosrule.notify(app,"[额外不视频奖励]:" + obj.incCredit,"");
             
            
         }else{
-            console.log("[小视频阅读失败]:" + obj.statusCode );
-            $iosrule.notify(app,"[小视频阅读失败]:" + obj.statusCode,"");
+            console.log("[额外不视频失败]:" + obj.statusCode );
+            $iosrule.notify(app,"[额外不视频失败]:" + obj.statusCode,"");
 
         }
             
@@ -136,17 +135,7 @@ function xsp() {
 
 
 
-function xgbd(bd) {
 
-    if (JSON.parse(bd).hasOwnProperty("token")) {
-        bd = JSON.parse(bd); delete bd["token"]; bd = JSON.stringify(bd);
-        return bd;
-      }
-      else
-        return bd;
-
-
-}
 
 
 
