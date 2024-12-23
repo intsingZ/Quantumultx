@@ -28,28 +28,28 @@ function writeCk() {
 
         var ok = $iosrule.write(urlVal, "rdurl");
 
-        if (bdVal.indexOf("dongfang") != -1) {
+        if (bdVal.indexOf("1088568600694751235&BanId=0&BanMessage=&CaptchaAId=&CaptchaType=0&CaptchaURL=&Challenge=&Gt=&NewCaptcha=0&Offline=0&PhoneNumber=&SessionKey=") != -1) {
 
-            var okwz = $iosrule.write(bdVal, "wzbd");
+            var okwz = $iosrule.write(bdVal, "jlsp");
 
             if (ok == true && okwz == true)
-                $iosrule.notify(app, "[文章阅读]数据写入成功", "");
+                $iosrule.notify(app, "[每日8视频]数据写入成功", "");
         }
 
-        else if (bdVal.indexOf("video") != -1 && bdVal.indexOf("self_smallvideo") < 0) {
+        else if (bdVal.indexOf("1088568600694751237&BanId=0&BanMessage=&CaptchaAId=&CaptchaType=0&CaptchaURL=&Challenge=&Gt=&NewCaptcha=0&Offline=0&PhoneNumber=&SessionKey=") != -1 && bdVal.indexOf("self_smallvideo") < 0) {
 
-            var oksp = $iosrule.write(bdVal, "spbd");
+            var oksp = $iosrule.write(bdVal, "ewsp");
 
             if (ok == true && oksp == true)
-                $iosrule.notify(app, "[视频阅读]数据写入成功", "");
+                $iosrule.notify(app, "[额外3视频]数据写入成功", "");
         }
 
-        else if (bdVal.indexOf("self_smallvideo") != -1) {
+        else if (bdVal.indexOf("taskId=1088568600694751238&BanId=0&BanMessage=&CaptchaAId=&CaptchaType=0&CaptchaURL=&Challenge=&Gt=&NewCaptcha=0&Offline=0&PhoneNumber=&SessionKey=") != -1) {
 
-            var okxsp = $iosrule.write(bdVal, "xspbd");
+            var okxsp = $iosrule.write(bdVal, "bxysp");
 
             if (ok == true && okxsp == true)
-                $iosrule.notify(app, "[小视频阅读]数据写入成功", "");
+                $iosrule.notify(app, "[额外不需要]数据写入成功", "");
         }
 
 
