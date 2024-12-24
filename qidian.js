@@ -7,7 +7,7 @@
 🎯重写脚本:
 [rewrite local]
 https\:\/\/h5\.if\.qidian\.com\/argus\/api\/v1\/video\/adv\/finishWatch url script-request-body https://raw.githubusercontent.com/intsingZ/Quantumultx/refs/heads/main/qd_ck.js
-https\:\/\/h5\.if\.qidian\.com\/argus\/api\/v2\/video\/adv\/mainPage url script-response-body https://raw.githubusercontent.com/intsingZ/Quantumultx/refs/heads/main/qd_task.js
+https\:\/\/h5\.if\.qidian\.com\/argus\/api\/v1\/video\/adv\/mainPage url script-response-body https://raw.githubusercontent.com/intsingZ/Quantumultx/refs/heads/main/qd_task.js
 [MITM]
 hostname = h5.if.qidian.com
 ⏰定时任务:
