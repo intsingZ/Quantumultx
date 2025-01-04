@@ -20,7 +20,7 @@ $.taskId_2 = $.getdata("qd_taskId_2");
   session.headers = $request.headers;
   $.log(JSON.stringify(session));
 
-  if (session.body.indexOf($.taskId) != -1) {
+  if (session.body.includes($.taskId) != -1) {
     if ($.setdata(JSON.stringify(session), "qd_session")) {
       $.log("🎉广告1信息获取成功!");
       $.msg($.name, "🎉广告1信息获取成功!");
@@ -29,7 +29,7 @@ $.taskId_2 = $.getdata("qd_taskId_2");
       $.log(session);
       $.msg($.name, "🔴广告1信息获取失败!");
     }
-  } else if (session.body.indexOf($.taskId_2) != -1) {
+  } else if (session.body.includes($.taskId_2) != -1) {
     if ($.setdata(JSON.stringify(session), "qd_session_2")) {
       $.log("🎉广告2信息获取成功!");
       $.msg($.name, "🎉广告2信息获取成功!");
